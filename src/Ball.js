@@ -32,7 +32,7 @@ export default class Ball {
         }
     }
 
-    update(deltaTime) {
+    update(deltaTime, paddleRects) {
         this.x += this.direction.x * deltaTime * BALL_VELOCITY
         this.y += this.direction.y * deltaTime * BALL_VELOCITY;
 
@@ -47,5 +47,19 @@ export default class Ball {
         if (ballRect.left <= 0 || ballRect.right >= window.innerWidth) {
             this.direction.x *= -1;
         }
+
+        // ? if the ball hits the paddle, reverse the x direction
+        if (paddleRects.some(rect => isColliding(ballRect, rect))) {
+            this.direction.x *= -1;
+        }
     }
+}
+
+const isColliding = (rect1, rect2) => {
+    return (
+        rect1.left <= rect2.right &&
+        rect1.right >= rect2.left &&
+        rect1.top <= rect2.bottom &&
+        rect1.bottom >= rect2.top
+    )
 }

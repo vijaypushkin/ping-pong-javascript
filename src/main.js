@@ -54,7 +54,7 @@ const gameLoop = (timeStamp) => {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 
-    ball.update(deltaTime);
+    ball.update(deltaTime, [paddle1.rect(), paddle2.rect()]);
     paddle1.update(deltaTime);
     paddle2.update(deltaTime);
 

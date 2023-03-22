@@ -16,6 +16,10 @@ export default class Paddle {
         this.paddleElem.style.setProperty(PADDLE_POS, value);
     }
 
+    rect() {
+        return this.paddleElem.getBoundingClientRect();
+    }
+
     init() {
         this.position = 50;
     }
@@ -39,6 +43,4 @@ export default class Paddle {
             this.position += PADDLE_VELOCITY * deltaTime;
         }
     }
-
-
 }
