@@ -25,11 +25,11 @@ export default class Paddle {
     }
 
     update(deltaTime) {
-        const paddleRect = this.paddleElem.getBoundingClientRect();
-
         // ? if the paddle hits the top or bottom of the screen, stop moving
-        if (paddleRect.top <= 0 || paddleRect.bottom >= window.innerHeight) {
-            this.direction = DIRECTION.IDLE;
+        if (this.position <= 0) {
+            this.position = 0
+        } else if (this.position >= 100) {
+            this.position = 100
         }
 
 
@@ -39,7 +39,6 @@ export default class Paddle {
             this.position += PADDLE_VELOCITY * deltaTime;
         }
     }
-
 
 
 }
