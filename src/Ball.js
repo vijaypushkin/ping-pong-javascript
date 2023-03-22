@@ -33,6 +33,7 @@ export default class Ball {
     }
 
     update(deltaTime, paddleRects) {
+        let winner = null;
         this.x += this.direction.x * deltaTime * BALL_VELOCITY
         this.y += this.direction.y * deltaTime * BALL_VELOCITY;
 
@@ -45,6 +46,8 @@ export default class Ball {
 
         // ? if the ball hits the left or right of the screen, reverse the x direction
         if (ballRect.left <= 0 || ballRect.right >= window.innerWidth) {
+            winner = ballRect.left <= 0 ? 'right' : 'left';
+
             this.direction.x *= -1;
         }
 
@@ -52,6 +55,8 @@ export default class Ball {
         if (paddleRects.some(rect => isColliding(ballRect, rect))) {
             this.direction.x *= -1;
         }
+
+        return winner;
     }
 }
 

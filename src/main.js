@@ -7,6 +7,9 @@ const ball = new Ball(document.getElementById('ball'));
 const paddle1 = new Paddle(document.getElementById('paddle1'));
 const paddle2 = new Paddle(document.getElementById('paddle2'));
 
+const score1 = document.getElementById('score1');
+const score2 = document.getElementById('score2');
+
 let lastTime = 0;
 
 const initialize = () => {
@@ -54,9 +57,17 @@ const gameLoop = (timeStamp) => {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 
-    ball.update(deltaTime, [paddle1.rect(), paddle2.rect()]);
     paddle1.update(deltaTime);
     paddle2.update(deltaTime);
+    const winner = ball.update(deltaTime, [paddle1.rect(), paddle2.rect()]);
+
+    if (winner === 'left') {
+        score1.innerText = `${parseInt(score1.innerText) + 1}`;
+    }
+
+    if (winner === 'right') {
+       score2.innerText = `${parseInt(score2.innerText) + 1}`;
+    }
 
     requestAnimationFrame(gameLoop);
 }
