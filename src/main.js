@@ -10,8 +10,10 @@ const paddle2 = new Paddle(document.getElementById('paddle2'));
 const score1 = document.getElementById('score1');
 const score2 = document.getElementById('score2');
 
+const instructions = document.getElementById('instructions');
+
 let lastTime = 0;
-let gamePaused = false;
+let gamePaused = true;
 
 const initialize = () => {
     ball.init();
@@ -54,8 +56,10 @@ const addEventListeners = () => {
         if (event.code === 'Space') {
             if (gamePaused) {
                 gamePaused = false;
+                instructions.style.opacity = '0';
                 requestAnimationFrame(t => gameLoop(t, 0));
             } else {
+                instructions.style.opacity = '1';
                 gamePaused = true;
             }
         }

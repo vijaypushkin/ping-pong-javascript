@@ -47,3 +47,21 @@ body {
     box-shadow: #ad733475 0 0 2px 2px;
     border-radius: 50%;
 }
+
+#instructions {
+    position: absolute;
+    inset: 10px;
+    color: white;
+    font-size: 2rem;
+    background: rgba(215, 215, 215, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+
+    transition: opacity 0.5s;
+}
+
+#instructions td {
+    padding: 1rem;
+}
