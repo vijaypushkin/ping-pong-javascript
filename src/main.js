@@ -11,6 +11,7 @@ const score1 = document.getElementById('score1');
 const score2 = document.getElementById('score2');
 
 let lastTime = 0;
+let gamePaused = false;
 
 const initialize = () => {
     ball.init();
@@ -50,11 +51,19 @@ const addEventListeners = () => {
             paddle2.setDirection(DIRECTION.IDLE);
         }
 
+        if (event.code === 'Space') {
+            if (gamePaused) {
+                gamePaused = false;
+                requestAnimationFrame(t => gameLoop(t, 0));
+            } else {
+                gamePaused = true;
+            }
+        }
     })
 }
 
-const gameLoop = (timeStamp) => {
-    const deltaTime = timeStamp - lastTime;
+const gameLoop = (timeStamp, initialDelta) => {
+    const deltaTime = initialDelta ?? timeStamp - lastTime;
     lastTime = timeStamp;
 
     paddle1.update(deltaTime);
@@ -66,10 +75,12 @@ const gameLoop = (timeStamp) => {
     }
 
     if (winner === 'right') {
-       score2.innerText = `${parseInt(score2.innerText) + 1}`;
+        score2.innerText = `${parseInt(score2.innerText) + 1}`;
     }
 
-    requestAnimationFrame(gameLoop);
+    if (!gamePaused) {
+        requestAnimationFrame(gameLoop);
+    }
 }
 
 initialize();
