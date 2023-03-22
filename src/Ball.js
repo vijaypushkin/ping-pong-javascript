@@ -1,8 +1,4 @@
-const POS_X = '--position-x';
-const POS_Y = '--position-y';
-
-// ? using this constant to control the speed of the ball
-const VELOCITY = 0.01;
+import {BALL_POS_X, BALL_POS_Y, BALL_VELOCITY} from "./constants.js";
 
 export default class Ball {
     constructor(ballElem) {
@@ -10,19 +6,19 @@ export default class Ball {
     }
 
     get x() {
-        return parseFloat(getComputedStyle(this.ballElem).getPropertyValue(POS_X));
+        return parseFloat(getComputedStyle(this.ballElem).getPropertyValue(BALL_POS_X));
     }
 
     set x(value) {
-        this.ballElem.style.setProperty(POS_X, value);
+        this.ballElem.style.setProperty(BALL_POS_X, value);
     }
 
     get y() {
-        return parseFloat(getComputedStyle(this.ballElem).getPropertyValue(POS_Y));
+        return parseFloat(getComputedStyle(this.ballElem).getPropertyValue(BALL_POS_Y));
     }
 
     set y(value) {
-        this.ballElem.style.setProperty(POS_Y, value);
+        this.ballElem.style.setProperty(BALL_POS_Y, value);
     }
 
     init() {
@@ -37,8 +33,8 @@ export default class Ball {
     }
 
     update(deltaTime) {
-        this.x += this.direction.x * deltaTime * VELOCITY;
-        this.y += this.direction.y * deltaTime * VELOCITY;
+        this.x += this.direction.x * deltaTime * BALL_VELOCITY
+        this.y += this.direction.y * deltaTime * BALL_VELOCITY;
 
         const ballRect = this.ballElem.getBoundingClientRect();
 
