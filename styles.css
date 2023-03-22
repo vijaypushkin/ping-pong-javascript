@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    background: #3d3d3d;
+}
+
+.paddle {
+    --position: 50;
+
+    top: calc(var(--position) * 1vh);
+    transform: translateY(-50%);
+    position: absolute;
+    height: 100px;
+    width: 20px;
+}
+
+.paddle.left {
+    left: 1vw;
+    background: hsl(0, 50%, 50%);
+}
+
+.paddle.right {
+    right: 1vw;
+    background: hsl(180, 50%, 50%);
+}
+
+#score {
+    display: flex;
+    font-size: 3rem;
+    color: white;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+#ball {
+    --position-x: 50;
+    --position-y: 50;
+
+    position: absolute;
+    top: calc(var(--position-y) * 1vh);
+    left: calc(var(--position-x) * 1vw);
+    transform: translate(-50%, -50%);
+    height: 20px;
+    width: 20px;
+    background: #ad7334;
+    box-shadow: #ad733475 0 0 2px 2px;
+    border-radius: 50%;
+}
